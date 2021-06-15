@@ -35,16 +35,7 @@ const COLORS = {
   143: '#ff9d81', //	Red-peach
 }
 
-const COLOR = [
-  '#000000', '#1d2b53',
-  '#7e2553', '#008751',
-  '#ab5236', '#5f574f',
-  '#c2c3c7', '#fff1e8',
-  '#ff004d', '#ffa300',
-  '#ffec27', '#00e436',
-  '#29adff', '#83769c',
-  '#ff77a8', '#ffccaa'
-]
+const COLOR = Object.values(COLORS).slice(0, 16)
 
 function CLS() {
   ctx.clearRect(0, 0, 128, 128);
@@ -85,7 +76,7 @@ function LINE(x0, y0, x1, y1, col = 7) {
   ctx.strokeStyle = COLOR[col]
   ctx.beginPath();       // Start a new path
   ctx.moveTo(x0, y0);    // Move the pen to (30, 50)
-  ctx.lineTo(x1, y1);  // Draw a line to (150, 100)
+  ctx.lineTo(x1, y1);    // Draw a line to (150, 100)
   ctx.stroke();          // Render the path
 }
 
@@ -121,13 +112,10 @@ function update() {
 }
 
 function draw() {
-  // const { x, y } = _
   CLS()
   draw_palette()
   PSET(env.x, env.y, 12)
   RECT(10, 10, 60, 60, 1)
   RECT(30, 30, 80, 80, 2)
-  // LINE(10, 120, x, y, 9)
-  // CIRCFILL(y - ~~(x / 2), x, 3, 3)
   requestAnimationFrame(update)
 }
