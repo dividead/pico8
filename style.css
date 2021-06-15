@@ -1,0 +1,10 @@
+canvas {
+  margin: auto;
+  border: 1px solid #ff6c24;
+  background-color: #000000;
+}
+body, html {
+  height: 100%;
+  display: grid;
+  background-color: #000000;
+}
