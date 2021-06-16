@@ -20,6 +20,20 @@ const encode = list => {
   return code + c
 }
 
+function decode(sprite) {
+  let fill = !!+sprite[0]
+  let res = []
+  for (let i = 1; i < sprite.length; i++) {
+    let val = +sprite[i]
+    while (val--) {
+      res.push(fill ? 1 : 0)
+    }
+
+    fill = !fill
+  }
+  return res
+}
+
 let font = []
 for (let row = 32; row < 481; row += 32) {
   for (let col = 0; col < 512; col += 32) {
@@ -31,11 +45,12 @@ for (let row = 32; row < 481; row += 32) {
         i++
       }
     }
-    font.push(encode(s))
+    font.push(encode(s)) // TODO: fix 3x5
   }
 }
 
 const rune = list => {
+  list = decode(list)
   let c = 0
   let s = ''
   let a = []
@@ -52,10 +67,10 @@ const rune = list => {
   return a.join('\n')
 }
 
-// console.log(rune(font[16 * 7 + 0]))
+// console.log(rune(font[2]))
 // console.log(rune(font[16 * 7 + 1]))
 // console.log(rune(font[16 * 7 + 2]))
 // console.log(rune(font[16 * 7 + 3]))
 // console.log(rune(font[16 * 15 - 1]))
 
-fs.writeFileSync('./font_encoded.json', JSON.stringify(font))
+// fs.writeFileSync('./font_encoded.json', JSON.stringify(font))
